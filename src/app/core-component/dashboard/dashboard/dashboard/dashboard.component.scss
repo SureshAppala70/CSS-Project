@@ -1,0 +1,11 @@
+.row-form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+form-field {
+    display: flex;
+    flex-direction: column;
+    width: 124px;
+}

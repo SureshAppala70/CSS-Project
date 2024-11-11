@@ -1,0 +1,16 @@
+.app-header {
+    position: fixed;
+    top: o;
+    left: 0;
+    width: 100%;
+    color: white;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    z-index: 1000;
+}
+
+.app-main-content {
+    padding-top: 60px;
+    margin: 0;
+}
