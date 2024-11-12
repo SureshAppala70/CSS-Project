@@ -1,58 +1,72 @@
 <form [formGroup]="tableForm" class="row-form">
-    <div class="form-field">
-      <label for="startDate">Start Date</label>
-      <mat-form-field appearance="outline">
-        <input matInput [matDatepicker]="startPicker" formControlName="startDate" id="startDate"
-          placeholder="Select Date">
-        <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
-        <mat-datepicker #startPicker></mat-datepicker>
-      </mat-form-field>
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"> <a routerLink="/">Home</a>
+      </li>
+      <li class="breadcrumb-item active" aria-current="page">
+        Unit Identification Dashboard
+      </li>
+    </ol>
+  </nav>
+  <div class="row col-md-12">
+    <h2>Unit Identification Dashboard</h2>
+    <div class="row col-md-9">
+      <div class="form-field col-md-2">
+        <label for="startDate">Start Date</label>
+        <mat-form-field appearance="outline">
+          <input matInput [matDatepicker]="startPicker" formControlName="startDate" id="startDate"
+            placeholder="Select Date">
+          <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+          <mat-datepicker #startPicker></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+      <div class="form-field col-md-2">
+        <label for="endDate">End Date</label>
+        <mat-form-field appearance="outline">
+          <input matInput [matDatepicker]="endPicker" formControlName="endDate" id="endDate" placeholder="Select Date">
+          <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+          <mat-datepicker #endPicker></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+      <div class="form-field col-md-2">
+        <label for="unitId">Unit ID</label>
+        <mat-form-field appearance="outline">
+          <input matInput formControlName="unitId" id="unitId" placeholder="Type Here">
+        </mat-form-field>
+      </div>
+
+      <div class="form-field col-md-2">
+        <label for="penskeLocation">Penske Location</label>
+        <mat-form-field appearance="outline">
+          <mat-select formControlName="penskeLocation" id="penskeLocation">
+            <mat-option value="Santa Clara">Santa Clara</mat-option>
+            <mat-option *ngFor="let location of locations" [value]="location">{{ location }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="form-field col-md-2">
+        <label for="confidenceLevel">Confidence Level</label>
+        <mat-form-field appearance="outline">
+          <input matInput formControlName="confidenceLevel" id="confidenceLevel" placeholder="Type Here">
+        </mat-form-field>
+      </div>
+
+      <div class="form-field col-md-2">
+        <label for="agreementNo">Agreement No</label>
+        <mat-form-field appearance="outline">
+          <input matInput formControlName="agreementNo" id="agreementNo" placeholder="Type Here">
+          <button mat-icon-button matSuffix>
+            <mat-icon>search</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+
     </div>
-  
-    <div class="form-field">
-      <label for="endDate">End Date</label>
-      <mat-form-field appearance="outline">
-        <input matInput [matDatepicker]="endPicker" formControlName="endDate" id="endDate" placeholder="Select Date">
-        <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
-        <mat-datepicker #endPicker></mat-datepicker>
-      </mat-form-field>
-    </div>
-  
-    <div class="form-field">
-      <label for="unitId">Unit ID</label>
-      <mat-form-field appearance="outline">
-        <input matInput formControlName="unitId" id="unitId" placeholder="Type Here">
-      </mat-form-field>
-    </div>
-  
-    <div class="form-field">
-      <label for="penskeLocation">Penske Location</label>
-      <mat-form-field appearance="outline">
-        <mat-select formControlName="penskeLocation" id="penskeLocation">
-          <mat-option value="Santa Clara">Santa Clara</mat-option>
-          <mat-option *ngFor="let location of locations" [value]="location">{{ location }}</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
-  
-    <div class="form-field">
-      <label for="confidenceLevel">Confidence Level</label>
-      <mat-form-field appearance="outline">
-        <input matInput formControlName="confidenceLevel" id="confidenceLevel" placeholder="Type Here">
-      </mat-form-field>
-    </div>
-  
-    <div class="form-field">
-      <label for="agreementNo">Agreement No</label>
-      <mat-form-field appearance="outline">
-        <input matInput formControlName="agreementNo" id="agreementNo" placeholder="Type Here">
-        <button mat-icon-button matSuffix>
-          <mat-icon>search</mat-icon>
-        </button>
-      </mat-form-field>
-    </div>
-  
-    <div class="toggle-group">
+
+    <div class="toggle-group row col-md-3">
       <mat-button-toggle-group formControlName="allInOut" class="toggle-group">
         <mat-button-toggle value="all">
           <button mat-icon-button matSuffix>
@@ -73,10 +87,14 @@
           Out
         </mat-button-toggle>
       </mat-button-toggle-group>
-    </div>
-  
-    <div class="form-field">
+
       <button mat-raised-button color="primary" (click)="onSubmit()">Search</button>
     </div>
-  </form>
-  
+
+
+  </div>
+</form>
+<div class="card flex justify-content-center">
+  <app-table [dataSource]="userList" [totalItems]="totalItems">
+  </app-table>
+</div>

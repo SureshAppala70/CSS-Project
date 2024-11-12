@@ -9,3 +9,27 @@ form-field {
     flex-direction: column;
     width: 124px;
 }
+
+.breadcrumb {
+    display: flex;
+    list-style: none;
+    padding: 8px 0;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+    margin-bottom: 0px;
+}
+
+.breadcrumb-item {
+    margin-right: Opx;
+}
+
+.breadcrumb-item a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.breadcrumb-item.active {
+    color:
+        #6c757d;
+    pointer-events: none;
+}

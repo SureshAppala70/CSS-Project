@@ -1,15 +1,24 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, Input, OnInit } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator'; 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss']
 })
-export class TableComponent implements OnInit {
+export class TableComponent {
 
-  constructor() { }
+  displayedColumns: any[] = ['id', 'firstName', 'lastName', 'maidenName', 'age', 'username', 'bloodGroup', 'height'];
+  @Input() dataSource: any[] = [];
+  @Input() totalItems: any;
+    itemsPerPage = 10;
+    currentPageIndex = 0;
+    selection: any; 
 
-  ngOnInit(): void {
-  }
+    constructor(){}
 
+
+    onPageChange (event: PageEvent) {
+    this.itemsPerPage = event. pageSize;
+    this.currentPageIndex = event.pageIndex;
+    }
 }
