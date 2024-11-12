@@ -11,7 +11,7 @@
   <div class="row col-md-12">
     <h2>Unit Identification Dashboard</h2>
     <div class="row col-md-9">
-      <div class="form-field col-md-2">
+      <!-- <div class="form-field col-md-2">
         <label for="startDate">Start Date</label>
         <mat-form-field appearance="outline">
           <input matInput [matDatepicker]="startPicker" formControlName="startDate" id="startDate"
@@ -28,8 +28,18 @@
           <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
           <mat-datepicker #endPicker></mat-datepicker>
         </mat-form-field>
-      </div>
-
+      </div> -->
+      <div class="form-field col-md-2">
+        <label for="unitId">Enter a date range</label>
+      <mat-form-field appearance="outline">
+        <mat-date-range-input [rangePicker]="picker">
+          <input matStartDate placeholder="Start date">
+          <input matEndDate placeholder="End date">
+        </mat-date-range-input>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+      </mat-form-field>
+</div>
       <div class="form-field col-md-2">
         <label for="unitId">Unit ID</label>
         <mat-form-field appearance="outline">
