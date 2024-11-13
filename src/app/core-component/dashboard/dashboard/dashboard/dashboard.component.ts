@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { DashboardService } from '../../../../core/service/dashboard_service/dashboard.service';
-
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-dashboard',
@@ -20,7 +20,9 @@ export class DashboardComponent implements OnInit {
   totalItems: number = 0;
   paginator: number = 0;
 
-  constructor(private fb: FormBuilder, private dashboardService: DashboardService) {
+  constructor(private fb: FormBuilder, private dashboardService: DashboardService,
+    private httpClient:HttpClient
+  ) {
     this.tableForm = this.fb.group({
       startDate: [null],
       endDate: [null],
@@ -40,13 +42,18 @@ export class DashboardComponent implements OnInit {
     };
 
     loadUser(){
-      this.dashboardService.getDashboardData(this.page, this.pageSize).subscribe((response: any)=>{
+      // this.dashboardService.getDashboardData(this.page, this.pageSize).subscribe((response: any)=>{
       
-        this.data = response.users;
-        this.userList = this.data.slice(0, 10);
-        console.log("@@@@@@@@@@@@@@@@@",this.userList);
-        this.totalItems = response.total;
-      })
+      //   this.data = response.users;
+      //   this.userList = this.data.slice(0, 10);
+      //   console.log("@@@@@@@@@@@@@@@@@",this.userList);
+      //   this.totalItems = response.total;
+      // })
+      this.httpClient.get<any[]>('assets/JSON/mockdata.json').subscribe((data: any[])=>{
+        this.userList = data;
+        console.log("CCCCCCCCCCCC",this.userList);
+      });
+
     }
 
 }

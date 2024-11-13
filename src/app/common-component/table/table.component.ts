@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator'; 
 @Component({
   selector: 'app-table',
@@ -7,7 +7,8 @@ import { PageEvent } from '@angular/material/paginator';
 })
 export class TableComponent {
 
-  displayedColumns: any[] = ['id', 'firstName', 'lastName', 'maidenName', 'age', 'username', 'bloodGroup', 'height'];
+  // displayedColumns: any[] = ['id', 'firstName', 'lastName', 'maidenName', 'age', 'username', 'bloodGroup', 'height'];
+  displayedColumns: string[] = [];
   @Input() dataSource: any[] = [];
   @Input() totalItems: any;
     itemsPerPage = 10;
@@ -16,6 +17,11 @@ export class TableComponent {
 
     constructor(){}
 
+    ngOnChanges(changes: SimpleChanges): void {
+      if(changes['dataSource'] && this.dataSource.length > 0){
+        this.displayedColumns = Object.keys(this.dataSource[0]);
+      }
+    }
 
     onPageChange (event: PageEvent) {
     this.itemsPerPage = event. pageSize;
